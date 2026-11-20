@@ -33,16 +33,19 @@
           <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </button>
 
-        <div class="max-w-6xl w-full max-h-[90vh] flex flex-col items-center justify-center select-none">
-          <div class="relative w-full flex items-center justify-center overflow-hidden max-h-[75vh]">
-            <img id="anfion-lightbox-img" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded-md shadow-2xl transition-transform duration-300 transform scale-95" />
+        <div class="max-w-6xl w-full max-h-[92vh] flex flex-col items-center justify-center select-none">
+          <div class="relative w-full flex items-center justify-center overflow-hidden max-h-[72vh]">
+            <img id="anfion-lightbox-img" src="" alt="" class="max-h-[72vh] max-w-full object-contain rounded-md shadow-2xl transition-transform duration-300 transform scale-95" />
           </div>
-          <div class="mt-4 w-full flex flex-col sm:flex-row items-center justify-between text-white/90 px-4 py-2 bg-stone-900/80 rounded-lg border border-stone-800">
-            <div class="text-left w-full sm:w-auto">
-              <h4 id="anfion-lightbox-title" class="font-medium text-base text-stone-100"></h4>
-              <p id="anfion-lightbox-caption" class="text-xs text-stone-400 mt-0.5 line-clamp-2"></p>
+          <div class="mt-4 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between text-white/90 px-5 py-3 bg-stone-900/90 rounded-lg border border-stone-800 gap-3 backdrop-blur-md">
+            <div class="text-left w-full">
+              <div class="flex items-center gap-2 mb-1">
+                <span id="anfion-lightbox-category" class="hidden text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/25 text-brand-300 border border-brand-500/30"></span>
+                <h4 id="anfion-lightbox-title" class="font-serif font-bold text-base text-stone-100"></h4>
+              </div>
+              <p id="anfion-lightbox-caption" class="text-xs text-stone-300 leading-relaxed font-sans"></p>
             </div>
-            <div id="anfion-lightbox-counter" class="text-xs font-mono tracking-widest text-brand-400 bg-stone-800 px-3 py-1 rounded-full mt-2 sm:mt-0 flex-shrink-0">
+            <div id="anfion-lightbox-counter" class="text-xs font-mono tracking-widest text-brand-300 bg-stone-800/90 border border-stone-700 px-3 py-1 rounded-full shrink-0 self-end sm:self-center">
               0 / 0
             </div>
           </div>
@@ -53,6 +56,7 @@
 
     const imgEl = document.getElementById('anfion-lightbox-img');
     const titleEl = document.getElementById('anfion-lightbox-title');
+    const categoryEl = document.getElementById('anfion-lightbox-category');
     const captionEl = document.getElementById('anfion-lightbox-caption');
     const counterEl = document.getElementById('anfion-lightbox-counter');
     const closeBtn = document.getElementById('anfion-lightbox-close');
@@ -99,6 +103,12 @@
         imgEl.classList.add('scale-100');
       };
       titleEl.textContent = item.title || '';
+      if (item.category) {
+        categoryEl.textContent = item.category;
+        categoryEl.classList.remove('hidden');
+      } else {
+        categoryEl.classList.add('hidden');
+      }
       captionEl.textContent = item.caption || '';
       counterEl.textContent = `${currentIndex + 1} / ${currentItems.length}`;
 
