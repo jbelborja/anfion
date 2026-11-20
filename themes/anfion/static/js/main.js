@@ -1,0 +1,210 @@
+/**
+ * Anfion Architecture Theme - Responsive Lightbox & Gallery Viewer
+ * High-performance, zero-dependency vanilla JS lightbox
+ */
+(function() {
+  'use strict';
+
+  function initGalleries() {
+    // Collect all galleries on the page
+    const galleryContainers = document.querySelectorAll('[data-gallery]');
+    if (!galleryContainers.length) return;
+
+    // Check or create lightbox DOM
+    let lightbox = document.getElementById('anfion-lightbox');
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.id = 'anfion-lightbox';
+      lightbox.className = 'fixed inset-0 z-50 hidden items-center justify-center bg-black/95 backdrop-blur-md p-4 transition-all duration-300 opacity-0';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-label', 'Galería de fotos');
+
+      lightbox.innerHTML = `
+        <button id="anfion-lightbox-close" class="absolute top-4 right-4 z-50 text-white/80 hover:text-white p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none" aria-label="Cerrar (Esc)">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <button id="anfion-lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-50 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none" aria-label="Anterior (Flecha izquierda)">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <button id="anfion-lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-50 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none" aria-label="Siguiente (Flecha derecha)">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <div class="max-w-6xl w-full max-h-[90vh] flex flex-col items-center justify-center select-none">
+          <div class="relative w-full flex items-center justify-center overflow-hidden max-h-[75vh]">
+            <img id="anfion-lightbox-img" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded-md shadow-2xl transition-transform duration-300 transform scale-95" />
+          </div>
+          <div class="mt-4 w-full flex flex-col sm:flex-row items-center justify-between text-white/90 px-4 py-2 bg-stone-900/80 rounded-lg border border-stone-800">
+            <div class="text-left w-full sm:w-auto">
+              <h4 id="anfion-lightbox-title" class="font-medium text-base text-stone-100"></h4>
+              <p id="anfion-lightbox-caption" class="text-xs text-stone-400 mt-0.5 line-clamp-2"></p>
+            </div>
+            <div id="anfion-lightbox-counter" class="text-xs font-mono tracking-widest text-brand-400 bg-stone-800 px-3 py-1 rounded-full mt-2 sm:mt-0 flex-shrink-0">
+              0 / 0
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(lightbox);
+    }
+
+    const imgEl = document.getElementById('anfion-lightbox-img');
+    const titleEl = document.getElementById('anfion-lightbox-title');
+    const captionEl = document.getElementById('anfion-lightbox-caption');
+    const counterEl = document.getElementById('anfion-lightbox-counter');
+    const closeBtn = document.getElementById('anfion-lightbox-close');
+    const prevBtn = document.getElementById('anfion-lightbox-prev');
+    const nextBtn = document.getElementById('anfion-lightbox-next');
+
+    let currentItems = [];
+    let currentIndex = 0;
+    let isOpen = false;
+
+    function openLightbox(items, index) {
+      currentItems = items;
+      currentIndex = index;
+      isOpen = true;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      // trigger reflow
+      void lightbox.offsetWidth;
+      lightbox.classList.remove('opacity-0');
+      document.body.style.overflow = 'hidden';
+      renderCurrent();
+    }
+
+    function closeLightbox() {
+      if (!isOpen) return;
+      isOpen = false;
+      lightbox.classList.add('opacity-0');
+      setTimeout(() => {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+        document.body.style.overflow = '';
+      }, 250);
+    }
+
+    function renderCurrent() {
+      if (!currentItems.length) return;
+      const item = currentItems[currentIndex];
+      imgEl.style.opacity = '0.3';
+      imgEl.src = item.src;
+      imgEl.alt = item.title || 'Foto de proyecto Ánfion';
+      imgEl.onload = () => {
+        imgEl.style.opacity = '1';
+        imgEl.classList.remove('scale-95');
+        imgEl.classList.add('scale-100');
+      };
+      titleEl.textContent = item.title || '';
+      captionEl.textContent = item.caption || '';
+      counterEl.textContent = `${currentIndex + 1} / ${currentItems.length}`;
+
+      if (currentItems.length <= 1) {
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+      }
+    }
+
+    function showNext() {
+      if (!currentItems.length) return;
+      currentIndex = (currentIndex + 1) % currentItems.length;
+      renderCurrent();
+    }
+
+    function showPrev() {
+      if (!currentItems.length) return;
+      currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+      renderCurrent();
+    }
+
+    // Attach listeners once
+    closeBtn.onclick = closeLightbox;
+    prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
+    nextBtn.onclick = (e) => { e.stopPropagation(); showNext(); };
+
+    lightbox.onclick = (e) => {
+      if (e.target === lightbox || e.target.closest('#anfion-lightbox-close')) {
+        closeLightbox();
+      }
+    };
+
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+
+    // Wire each gallery container
+    galleryContainers.forEach(container => {
+      const items = [];
+      const itemElements = container.querySelectorAll('[data-gallery-item]');
+      itemElements.forEach((el, idx) => {
+        const src = el.getAttribute('data-src') || el.getAttribute('href') || (el.querySelector('img') ? el.querySelector('img').src : '');
+        const title = el.getAttribute('data-title') || (el.querySelector('img') ? el.querySelector('img').alt : '') || '';
+        const caption = el.getAttribute('data-caption') || '';
+        const category = el.getAttribute('data-category') || '';
+
+        items.push({ src, title, caption, category });
+
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLightbox(items, idx);
+        });
+      });
+    });
+  }
+
+  // Mobile menu toggle
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!toggleBtn || !mobileMenu) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !expanded);
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  // Project filter functionality
+  function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('[data-filter-btn]');
+    const projectCards = document.querySelectorAll('[data-filter-category]');
+    if (!filterButtons.length || !projectCards.length) return;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter-btn');
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
+          b.classList.add('bg-stone-100', 'text-stone-700', 'border-stone-200');
+        });
+        btn.classList.remove('bg-stone-100', 'text-stone-700', 'border-stone-200');
+        btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-filter-category');
+          if (filter === 'all' || category.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initGalleries();
+    initMobileMenu();
+    initProjectFilters();
+  });
+})();

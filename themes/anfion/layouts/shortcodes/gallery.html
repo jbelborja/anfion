@@ -1,0 +1,6 @@
+{{ $items := .Page.Params.gallery }}
+{{ if .Get "images" }}
+  {{/* If custom comma-separated or JSON is passed */}}
+{{ end }}
+
+{{ partial "gallery.html" (dict "items" $items "title" (.Get "title" | default "Galería del Proyecto")) }}

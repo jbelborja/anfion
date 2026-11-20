@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@source "../../../content/**/*.md";
+@source "../../../content/**/*.html";
+@source "../../layouts/**/*.html";
+@source "../../../layouts/**/*.html";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Playfair Display", Georgia, Cambria, serif;
+
+  --color-brand-50: #faf8f5;
+  --color-brand-100: #f3eee5;
+  --color-brand-200: #e5dac9;
+  --color-brand-300: #d2c0a6;
+  --color-brand-400: #bba17f;
+  --color-brand-500: #a78864;
+  --color-brand-600: #8f6e4d;
+  --color-brand-700: #74573e;
+  --color-brand-800: #5e4635;
+  --color-brand-900: #4e3a2d;
+
+  --color-stone-dark: #181715;
+  --color-stone-surface: #22201c;
+  --color-stone-border: #32302b;
+
+  --color-eco-green: #2e5944;
+  --color-eco-green-light: #eaf3ee;
+  --color-eco-terra: #b85d38;
+  --color-eco-terra-light: #fbeee7;
+}
+
+/* Custom architectural utilities */
+.aspect-4\/3 {
+  aspect-ratio: 4 / 3;
+}
+.aspect-16\/9 {
+  aspect-ratio: 16 / 9;
+}
+.aspect-3\/2 {
+  aspect-ratio: 3 / 2;
+}
+
+/* Smooth transitions */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gallery Lightbox animation */
+.lightbox-fade {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}

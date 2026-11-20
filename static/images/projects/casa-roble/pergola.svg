@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242621"/>
+      <stop offset="100%" stop-color="#151713"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="750" fill="url(#bg)"/>
+  <rect width="1000" height="750" fill="url(#grid)"/>
+
+  <!-- Architectural Content Wireframe -->
+  <g id="wireframe">
+    
+        <path d="M 120 480 L 400 240 L 680 480 Z" fill="none" stroke="#2e5944" stroke-width="2" stroke-opacity="0.4"/>
+        <rect x="180" y="480" width="440" height="220" fill="none" stroke="#2e5944" stroke-width="2" stroke-opacity="0.4"/>
+        <!-- Triple glaze windows -->
+        <rect x="230" y="520" width="130" height="130" fill="#2e5944" fill-opacity="0.1" stroke="#2e5944" stroke-width="1.5"/>
+        <line x1="295" y1="520" x2="295" y2="650" stroke="#2e5944" stroke-width="1"/>
+        <rect x="440" y="520" width="130" height="130" fill="#2e5944" fill-opacity="0.1" stroke="#2e5944" stroke-width="1.5"/>
+        <!-- Solar louvers -->
+        <line x1="210" y1="500" x2="370" y2="500" stroke="#ffffff" stroke-width="2" stroke-opacity="0.6"/>
+        <line x1="420" y1="500" x2="580" y2="500" stroke="#ffffff" stroke-width="2" stroke-opacity="0.6"/>
+        <!-- Foundation & thermal cut -->
+        <line x1="100" y1="700" x2="700" y2="700" stroke="#2e5944" stroke-width="4"/>
+        <text x="400" y="730" fill="#2e5944" font-size="11" font-family="sans-serif" text-anchor="middle" letter-spacing="2">RUPTURA DE PUENTE TÉRMICO CONTINUA</text>
+        
+  </g>
+
+  <!-- Card Information Overlay -->
+  <g transform="translate(40, 660)">
+    <rect x="-10" y="-30" width="460" height="75" rx="3" fill="#181715" fill-opacity="0.75" stroke="#32302b" stroke-width="1"/>
+    <text x="10" y="-8" fill="#2e5944" font-size="11" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="2" text-transform="uppercase">EXTERIOR</text>
+    <text x="10" y="16" fill="#ffffff" font-size="18" font-family="'Cormorant Garamond', serif" font-weight="700">Pérgola Bioclimática & Porche</text>
+    <text x="10" y="34" fill="#a8a29e" font-size="11" font-family="'Inter', sans-serif">Sombreado en verano y captación pasiva en invierno</text>
+  </g>
+
+  <!-- Studio Watermark -->
+  <text x="960" y="45" fill="#ffffff" fill-opacity="0.4" font-size="12" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="3" text-anchor="end">ÁN F I O N</text>
+</svg>

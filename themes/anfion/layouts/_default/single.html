@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<article class="bg-[#FAF8F5] pb-20">
+  <header class="bg-stone-900 text-white py-16 border-b border-stone-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+        {{ .Title }}
+      </h1>
+      {{ with .Description }}
+        <p class="text-stone-300 text-lg leading-relaxed font-light">{{ . }}</p>
+      {{ end }}
+    </div>
+  </header>
+
+  {{ with .Params.featured_image }}
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+      <div class="aspect-16/9 overflow-hidden rounded-sm shadow-xl bg-stone-900">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover">
+      </div>
+    </div>
+  {{ end }}
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+    <div class="prose prose-stone prose-lg max-w-none prose-headings:font-serif prose-headings:text-stone-900 prose-p:text-stone-600 prose-p:leading-relaxed prose-a:text-brand-700">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.gallery }}
+      <div class="mt-12">
+        {{ partial "gallery.html" (dict "items" . "title" "Galería de Imágenes") }}
+      </div>
+    {{ end }}
+  </div>
+</article>
+
+{{ end }}

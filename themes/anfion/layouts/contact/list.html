@@ -1,0 +1,205 @@
+{{ define "main" }}
+
+<section class="bg-stone-900 text-white py-16 sm:py-20 border-b border-stone-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="text-xs uppercase tracking-widest font-semibold text-brand-400 block mb-2">Contacto Directo</span>
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+        {{ .Title | default "Inicia tu Proyecto Passivhaus o Rehabilitación" }}
+      </h1>
+      <p class="text-stone-300 text-base leading-relaxed">
+        {{ .Description | default "¿Tienes una parcela para construir o un edificio que deseas transformar? Cuéntanos tu idea y estudiaremos la viabilidad técnica y bioclimática de tu proyecto." }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-[#FAF8F5]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Studio Details Column (5 cols) -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="bg-white p-8 rounded-sm border border-stone-200/90 shadow-sm space-y-6">
+          <h2 class="text-2xl font-serif font-bold text-stone-900">
+            Estudio Central
+          </h2>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Atendemos proyectos en toda España, con sedes y obras activas principalmente en la Comunidad de Madrid, Cataluña y zona norte.
+          </p>
+
+          <div class="space-y-4 pt-4 border-t border-stone-100 text-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-sm bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <div>
+                <span class="text-xs uppercase tracking-wider font-semibold text-stone-500 block">Dirección</span>
+                <span class="text-stone-800">{{ site.Params.contact.address | default "Calle de la Arquitectura, 12, 28004 Madrid" }}</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-sm bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              </div>
+              <div>
+                <span class="text-xs uppercase tracking-wider font-semibold text-stone-500 block">Teléfono de Contacto</span>
+                <a href="tel:{{ site.Params.contact.phone }}" class="text-stone-800 hover:text-brand-700 font-medium">{{ site.Params.contact.phone | default "+34 912 345 678" }}</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-sm bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              </div>
+              <div>
+                <span class="text-xs uppercase tracking-wider font-semibold text-stone-500 block">Correo Electrónico</span>
+                <a href="mailto:{{ site.Params.contact.email }}" class="text-stone-800 hover:text-brand-700 font-medium">{{ site.Params.contact.email | default "contacto@anfion-arquitectura.es" }}</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-sm bg-stone-100 text-stone-700 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div>
+                <span class="text-xs uppercase tracking-wider font-semibold text-stone-500 block">Horario de Atención</span>
+                <span class="text-stone-800">{{ site.Params.contact.hours | default "Lunes a Viernes: 09:00 - 18:30" }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accreditations & Guarantee card -->
+        <div class="bg-stone-900 text-white p-6 rounded-sm border border-stone-800">
+          <h3 class="text-base font-serif font-bold mb-2">Garantía Passivhaus Institut</h3>
+          <p class="text-xs text-stone-400 leading-relaxed">
+            Todos nuestros proyectos son simulados con el software oficial PHPP (Passivhaus Planning Package) para garantizar contractualmente el rendimiento térmico antes de iniciar las obras.
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact Form Column (7 cols) -->
+      <div class="lg:col-span-7">
+        <div class="bg-white p-8 sm:p-10 rounded-sm border border-stone-200/90 shadow-sm">
+          <h2 class="text-2xl font-serif font-bold text-stone-900 mb-2">Formulario de Consulta</h2>
+          <p class="text-stone-600 text-sm mb-8">
+            Rellena los datos de tu proyecto y nos pondremos en contacto contigo en un plazo máximo de 48 horas.
+          </p>
+
+          <form action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Gracias por tu consulta! El equipo de Ánfion se pondrá en contacto contigo a la brevedad.');" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Nombre completo *</label>
+                <input type="text" id="name" name="name" required placeholder="Ej. Ana García" class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors">
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Correo electrónico *</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com" class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="phone" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Teléfono *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+34 600 000 000" class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors">
+              </div>
+
+              <div>
+                <label for="project_type" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Tipo de Proyecto *</label>
+                <select id="project_type" name="project_type" class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors bg-white">
+                  <option value="passivhaus_nueva">Obra Nueva Casa Pasiva (Passivhaus)</option>
+                  <option value="rehabilitacion_enerphit">Rehabilitación Energética (EnerPHit)</option>
+                  <option value="reforma_integral">Reforma Integral Bioclimática</option>
+                  <option value="asesoria_tecnica">Asesoría / Certificación Técnica</option>
+                  <option value="otro">Otro tipo de consulta</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="location" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Ubicación de la parcela o inmueble</label>
+              <input type="text" id="location" name="location" placeholder="Municipio, provincia o referencia catastral" class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors">
+            </div>
+
+            <div>
+              <label for="message" class="block text-xs uppercase tracking-wider font-semibold text-stone-700 mb-2">Descripción de la idea y necesidades *</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Cuéntanos superficie deseada, estado actual de la parcela o edificio, presupuesto estimado o dudas sobre el estándar Passivhaus..." class="w-full px-4 py-3 rounded-sm border border-stone-300 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 outline-none text-sm transition-colors"></textarea>
+            </div>
+
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="privacy" required class="mt-1 rounded-sm border-stone-300 text-stone-900 focus:ring-stone-900">
+              <label for="privacy" class="text-xs text-stone-500 leading-normal">
+                He leído y acepto la política de privacidad para el tratamiento de mis datos con fines de contacto y presupuesto.
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-4 text-xs font-bold uppercase tracking-widest text-white bg-stone-900 hover:bg-brand-700 transition-all rounded-sm shadow-md cursor-pointer">
+              Enviar Solicitud de Consulta
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Passivhaus FAQ Section -->
+    <div class="mt-24 pt-16 border-t border-stone-200">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-widest font-semibold text-brand-700 block mb-2">Preguntas Frecuentes</span>
+        <h2 class="text-3xl font-serif font-bold text-stone-900">Dudas Habituales sobre Casas Pasivas & Rehab</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-4">
+        
+        <details class="bg-white p-6 rounded-sm border border-stone-200/90 shadow-2xs group cursor-pointer">
+          <summary class="font-serif font-bold text-lg text-stone-900 flex justify-between items-center list-none">
+            <span>¿Cuánto cuesta construir una casa Passivhaus respecto a una tradicional?</span>
+            <span class="text-brand-700 text-xl font-sans group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-stone-600 text-sm leading-relaxed mt-4 pt-4 border-t border-stone-100">
+            El sobrecoste inicial medio de una casa Passivhaus certificada suele situarse entre un 5% y un 8% debido al triple acristalamiento, el mayor espesor de aislamiento y el equipo de ventilación con recuperación de calor. Sin embargo, al reducir el consumo de energía en un 80-90%, el ahorro en facturas y la ausencia de una caldera convencional amortizan esa inversión en pocos años, aportando además un confort térmico y de calidad de aire sin comparación.
+          </p>
+        </details>
+
+        <details class="bg-white p-6 rounded-sm border border-stone-200/90 shadow-2xs group cursor-pointer">
+          <summary class="font-serif font-bold text-lg text-stone-900 flex justify-between items-center list-none">
+            <span>¿Se puede rehabilitar una vivienda o edificio antiguo con estándar Passivhaus?</span>
+            <span class="text-brand-700 text-xl font-sans group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-stone-600 text-sm leading-relaxed mt-4 pt-4 border-t border-stone-100">
+            Sí. El Passivhaus Institut creó específicamente el sello <strong>EnerPHit</strong> para edificios existentes. Permite adaptar las exigencias a las restricciones geométricas o patrimoniales del edificio (aislando por el interior cuando la fachada está protegida), logrando ahorros térmicos drásticos de hasta el 75-80% y eliminando patologías históricas de condensación y moho.
+          </p>
+        </details>
+
+        <details class="bg-white p-6 rounded-sm border border-stone-200/90 shadow-2xs group cursor-pointer">
+          <summary class="font-serif font-bold text-lg text-stone-900 flex justify-between items-center list-none">
+            <span>¿Es cierto que en una casa pasiva no se pueden abrir las ventanas?</span>
+            <span class="text-brand-700 text-xl font-sans group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-stone-600 text-sm leading-relaxed mt-4 pt-4 border-t border-stone-100">
+            Es el mito más frecuente. En una casa Passivhaus <strong>las ventanas se abren exactamente igual que en cualquier casa</strong>. La diferencia es que <em>no es obligatorio abrirlas para respirar aire fresco</em>, ya que el sistema de ventilación mecánica controlada (VMC) renueva todo el volumen de aire de forma continua, filtrándolo contra polvo, polen y contaminación exterior.
+          </p>
+        </details>
+
+        <details class="bg-white p-6 rounded-sm border border-stone-200/90 shadow-2xs group cursor-pointer">
+          <summary class="font-serif font-bold text-lg text-stone-900 flex justify-between items-center list-none">
+            <span>¿Gestionáis las subvenciones y ayudas Next Generation para rehabilitación?</span>
+            <span class="text-brand-700 text-xl font-sans group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-stone-600 text-sm leading-relaxed mt-4 pt-4 border-t border-stone-100">
+            Sí. Nos encargamos de la redacción del Libro del Edificio Existente, el proyecto de rehabilitación energética y la justificación del salto de letra en la calificación energética exigida para obtener hasta un 60-80% de subvención a fondo perdido y deducciones fiscales en IRPF.
+          </p>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,64 @@
+<header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo -->
+      <a href="{{ "/" | relURL }}" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-sm bg-stone-900 text-brand-100 flex items-center justify-center font-serif text-2xl font-bold tracking-tighter group-hover:bg-brand-700 transition-colors">
+          <span>Á</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-widest uppercase font-sans text-stone-900 group-hover:text-brand-700 transition-colors">
+            {{ site.Params.brand_name | default "ÁNFION" }}
+          </span>
+          <span class="text-[10px] tracking-widest uppercase text-stone-500 font-medium">
+            {{ site.Params.brand_subtitle | default "Arquitectura · Casas Pasivas · Rehab" }}
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        {{ $currentPage := . }}
+        {{ range site.Menus.main }}
+          {{ $isActive := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+          <a href="{{ .URL | relURL }}" class="px-4 py-2 text-sm font-medium tracking-wide uppercase transition-colors rounded-sm {{ if $isActive }}text-brand-700 font-semibold bg-stone-100/80{{ else }}text-stone-700 hover:text-brand-700 hover:bg-stone-50{{ end }}">
+            {{ .Name }}
+          </a>
+        {{ end }}
+
+        <div class="ml-4 pl-4 border-l border-stone-200">
+          <a href="{{ "/contact" | relURL }}" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase text-white bg-stone-900 hover:bg-brand-700 transition-all rounded-sm shadow-xs">
+            Consulta Técnica
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="flex md:hidden">
+        <button id="mobile-menu-toggle" type="button" class="p-2 rounded-sm text-stone-700 hover:text-stone-900 hover:bg-stone-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-stone-200 bg-white px-4 pt-3 pb-6 space-y-2">
+    {{ $currentPage := . }}
+    {{ range site.Menus.main }}
+      {{ $isActive := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+      <a href="{{ .URL | relURL }}" class="block px-3 py-2 text-base font-medium uppercase tracking-wider rounded-sm {{ if $isActive }}text-brand-700 bg-stone-100 font-bold{{ else }}text-stone-700 hover:bg-stone-50{{ end }}">
+        {{ .Name }}
+      </a>
+    {{ end }}
+    <div class="pt-3 border-t border-stone-100">
+      <a href="{{ "/contact" | relURL }}" class="block w-full text-center px-4 py-2.5 text-xs font-semibold tracking-wider uppercase text-white bg-stone-900 hover:bg-brand-700 rounded-sm">
+        Consulta Técnica
+      </a>
+    </div>
+  </div>
+</header>

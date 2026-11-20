@@ -1,0 +1,112 @@
+{{ define "main" }}
+
+<section class="bg-stone-900 text-white py-16 sm:py-20 border-b border-stone-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="text-xs uppercase tracking-widest font-semibold text-brand-400 block mb-2">Portfolio de Obras</span>
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+        {{ .Title | default "Proyectos de Arquitectura & Passivhaus" }}
+      </h1>
+      <p class="text-stone-300 text-base leading-relaxed">
+        {{ .Description | default "Explora nuestras obras de nueva planta y rehabilitaciones energéticas bajo el estándar Passivhaus. Cada proyecto cuenta con su memoria técnica, detalles de envolvente y galería de fotos completa." }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Buttons Bar -->
+<section class="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 py-4 shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-x-auto gap-4">
+    <div class="flex items-center space-x-2">
+      <button data-filter-btn="all" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-brand-600 text-white border border-brand-600 shadow-xs cursor-pointer">
+        Todos ({{ len .Pages }})
+      </button>
+      <button data-filter-btn="passivhaus" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
+        Casas Pasivas
+      </button>
+      <button data-filter-btn="rehabilitacion" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
+        Rehabilitación EnerPHit
+      </button>
+      <button data-filter-btn="bioclimatica" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
+        Bioclimática & Madera
+      </button>
+    </div>
+    <span class="text-xs text-stone-500 hidden sm:inline font-mono">
+      Haz clic en un proyecto para ver sus fotos
+    </span>
+  </div>
+</section>
+
+<!-- Projects Grid -->
+<section class="py-16 bg-[#FAF8F5]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range .Pages }}
+        {{ $filterCategory := .Params.filter_tag | default "passivhaus" }}
+        <article data-filter-category="{{ $filterCategory }}" class="bg-white rounded-sm overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <!-- Cover / Featured Image -->
+            <a href="{{ .Permalink }}" class="block relative aspect-4/3 overflow-hidden bg-stone-200">
+              {{ with .Params.featured_image }}
+                <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              {{ else }}
+                <div class="w-full h-full bg-stone-300 flex items-center justify-center font-serif text-2xl text-stone-600">
+                  {{ $.Title }}
+                </div>
+              {{ end }}
+              
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                {{ with .Params.category }}
+                  <span class="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-white/95 text-stone-900 rounded-sm shadow-xs">
+                    {{ . }}
+                  </span>
+                {{ end }}
+                {{ with .Params.passivhaus_badge }}
+                  <span class="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-emerald-900/90 text-emerald-200 rounded-sm shadow-xs backdrop-blur-xs">
+                    {{ . }}
+                  </span>
+                {{ end }}
+              </div>
+
+              <!-- Photo Count -->
+              {{ with .Params.gallery }}
+                <div class="absolute bottom-3 right-3 bg-stone-900/80 text-white text-[11px] font-mono px-2.5 py-1 rounded-sm backdrop-blur-xs flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-brand-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  <span>{{ len . }} fotos en galería</span>
+                </div>
+              {{ end }}
+            </a>
+
+            <!-- Content -->
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                <span>{{ .Params.location }}</span>
+                <span>{{ .Params.year }}</span>
+              </div>
+              <h2 class="text-xl font-serif font-bold text-stone-900 mb-2 group-hover:text-brand-700 transition-colors">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </h2>
+              <p class="text-stone-600 text-sm line-clamp-3 leading-relaxed mb-4">
+                {{ .Description | default .Summary }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom stats & CTA -->
+          <div class="px-6 pb-6 pt-3 border-t border-stone-100 flex items-center justify-between bg-stone-50/50">
+            <div class="text-xs text-stone-500">
+              <span class="font-semibold text-stone-700">{{ with .Params.surface }}{{ . }} m²{{ end }}</span>
+              {{ with .Params.heating_demand }} · {{ . }}{{ end }}
+            </div>
+            <a href="{{ .Permalink }}" class="text-xs font-bold uppercase tracking-wider text-brand-700 hover:text-stone-900 inline-flex items-center gap-1">
+              Ver Proyecto & Fotos →
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

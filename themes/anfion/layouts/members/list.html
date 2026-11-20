@@ -1,0 +1,129 @@
+{{ define "main" }}
+
+<section class="bg-stone-900 text-white py-16 sm:py-20 border-b border-stone-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="text-xs uppercase tracking-widest font-semibold text-brand-400 block mb-2">Nuestro Equipo</span>
+      <h1 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+        {{ .Title | default "Arquitectos & Consultores Passivhaus" }}
+      </h1>
+      <p class="text-stone-300 text-base leading-relaxed">
+        {{ .Description | default "Detrás de Ánfion hay un equipo multidisciplinar que aúna diseño arquitectónico contemporáneo, cálculo termodinámico riguroso y experiencia en obra de alta eficiencia y rehabilitación." }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Members Section -->
+<section class="py-20 bg-[#FAF8F5]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="space-y-16">
+      {{ range $index, $member := .Pages }}
+        {{ $isEven := eq (mod $index 2) 1 }}
+        <div class="bg-white rounded-sm border border-stone-200/90 shadow-sm overflow-hidden flex flex-col {{ if $isEven }}lg:flex-row-reverse{{ else }}lg:flex-row{{ end }} items-stretch">
+          
+          <!-- Portrait Image -->
+          <div class="lg:w-2/5 relative bg-stone-100 min-h-[360px] overflow-hidden">
+            {{ with .Params.photo }}
+              <img src="{{ . | relURL }}" alt="{{ $member.Title }}" class="w-full h-full object-cover">
+            {{ else }}
+              <div class="w-full h-full flex items-center justify-center font-serif text-5xl text-stone-400 bg-stone-200">
+                {{ substr $member.Title 0 1 }}
+              </div>
+            {{ end }}
+            
+            <!-- Accreditations overlay -->
+            <div class="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
+              {{ range .Params.credentials }}
+                <span class="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-stone-950/85 text-brand-200 backdrop-blur-xs rounded-sm border border-stone-800">
+                  {{ . }}
+                </span>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- Member Bio & Details -->
+          <div class="lg:w-3/5 p-8 sm:p-12 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-2">
+                <span class="text-xs uppercase tracking-widest font-semibold text-brand-700">
+                  {{ .Params.role }}
+                </span>
+                <span class="text-xs text-stone-400 font-mono">
+                  {{ .Params.years_experience | default "12+ años de experiencia" }}
+                </span>
+              </div>
+
+              <h2 class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mb-4">
+                {{ .Title }}
+              </h2>
+
+              <div class="text-stone-600 text-sm leading-relaxed space-y-3 mb-6">
+                {{ .Content }}
+              </div>
+
+              <!-- Specialties Badges -->
+              {{ with .Params.specialties }}
+                <div class="pt-4 border-t border-stone-100">
+                  <span class="text-xs uppercase tracking-widest font-semibold text-stone-500 block mb-2">Áreas de especialidad:</span>
+                  <div class="flex flex-wrap gap-2">
+                    {{ range . }}
+                      <span class="px-2.5 py-1 text-xs bg-stone-100 text-stone-700 rounded-sm border border-stone-200">
+                        {{ . }}
+                      </span>
+                    {{ end }}
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+
+            <!-- Member Quote & Contact -->
+            <div class="mt-8 pt-6 border-t border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              {{ with .Params.quote }}
+                <p class="text-xs italic text-stone-500 font-serif max-w-md">
+                  “{{ . }}”
+                </p>
+              {{ end }}
+
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                {{ with .Params.email }}
+                  <a href="mailto:{{ . }}" class="text-brand-700 hover:text-stone-900 inline-flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Contactar
+                  </a>
+                {{ end }}
+                {{ with .Params.linkedin }}
+                  <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-stone-500 hover:text-brand-700 inline-flex items-center gap-1">
+                    LinkedIn →
+                  </a>
+                {{ end }}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      {{ end }}
+    </div>
+
+    <!-- Collaborative Philosophy -->
+    <div class="mt-20 p-8 sm:p-12 bg-stone-900 text-white rounded-sm border border-stone-800">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-widest font-semibold text-brand-400 block mb-2">Metodología de Trabajo</span>
+        <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mb-4">
+          Control integral desde el primer boceto hasta la entrega de llaves
+        </h3>
+        <p class="text-stone-300 text-sm leading-relaxed mb-6 font-light">
+          No externalizamos los cálculos térmicos ni la dirección de ejecución. En Ánfion, el mismo equipo que diseña la arquitectura calcula los puentes térmicos en PHPP, supervisa la instalación de las láminas de hermeticidad y realiza los tests Blower Door en obra.
+        </p>
+        <a href="{{ "/contact" | relURL }}" class="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest text-stone-900 bg-white hover:bg-brand-200 transition-all rounded-sm">
+          Hablar con el Equipo
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{ end }}

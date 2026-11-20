@@ -1,0 +1,26 @@
+{
+  "name": "anfion",
+  "version": "1.0.0",
+  "description": "Anfion - Architecture, Passive Houses & Rehabilitation Hugo Site",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i themes/anfion/assets/css/input.css -o themes/anfion/static/css/theme.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i themes/anfion/assets/css/input.css -o themes/anfion/static/css/theme.css --watch",
+    "build": "npm run build:css && hugo",
+    "server": "hugo server --buildDrafts"
+  },
+  "keywords": [
+    "hugo",
+    "tailwind",
+    "architecture",
+    "passivhaus",
+    "passive-house",
+    "rehabilitation"
+  ],
+  "author": "Anfion Arquitectura",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "tailwindcss": "^4.3.5"
+  }
+}

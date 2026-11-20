@@ -1,0 +1,11 @@
+name = "anfion"
+license = "MIT"
+description = "Modern Tailwind-based Hugo theme for architecture studios, Passivhaus, and rehabilitation projects with responsive photo galleries."
+homepage = "https://github.com/anfion/anfion-theme"
+demosite = "https://anfion-arquitectura.es"
+tags = ["architecture", "passivhaus", "passive-house", "rehabilitation", "tailwind", "gallery", "portfolio"]
+features = ["Tailwind CSS", "Passivhaus Indicators", "Photo Galleries", "Lightbox Viewer", "Modern Typography", "Responsive"]
+
+[author]
+  name = "Ánfion Arquitectura"
+  homepage = "https://anfion-arquitectura.es"

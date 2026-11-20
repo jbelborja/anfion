@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c2125"/>
+      <stop offset="100%" stop-color="#101316"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="750" fill="url(#bg)"/>
+  <rect width="1000" height="750" fill="url(#grid)"/>
+
+  <!-- Architectural Content Wireframe -->
+  <g id="wireframe">
+    
+        <!-- Technical wall section -->
+        <rect x="180" y="200" width="60" height="420" fill="#5e4635" fill-opacity="0.3" stroke="#5e4635" stroke-width="1.5"/>
+        <rect x="240" y="200" width="140" height="420" fill="#a78864" fill-opacity="0.25" stroke="#a78864" stroke-width="1.5"/>
+        <rect x="380" y="200" width="20" height="420" fill="#2e5944" fill-opacity="0.4" stroke="#2e5944" stroke-width="1.5"/>
+        <rect x="400" y="200" width="80" height="420" fill="#b85d38" fill-opacity="0.2" stroke="#b85d38" stroke-width="1.5"/>
+        <rect x="480" y="200" width="120" height="420" fill="#32302b" fill-opacity="0.1" stroke="#32302b" stroke-width="1.5"/>
+        
+        <!-- Callout annotations -->
+        <line x1="210" y1="260" x2="130" y2="260" stroke="#2e5944" stroke-width="1"/>
+        <text x="120" y="264" fill="#d2c0a6" font-size="10" font-family="sans-serif" text-anchor="end">Acabado Madera Alerce</text>
+        <line x1="310" y1="360" x2="130" y2="360" stroke="#2e5944" stroke-width="1"/>
+        <text x="120" y="364" fill="#d2c0a6" font-size="10" font-family="sans-serif" text-anchor="end">Fibra de Madera 20cm (U=0.14)</text>
+        <line x1="390" y1="460" x2="650" y2="460" stroke="#2e5944" stroke-width="1"/>
+        <text x="660" y="464" fill="#2e5944" font-size="10" font-family="sans-serif" font-weight="bold">Lámina Hermética ProClima</text>
+        <line x1="540" y1="560" x2="650" y2="560" stroke="#2e5944" stroke-width="1"/>
+        <text x="660" y="564" fill="#d2c0a6" font-size="10" font-family="sans-serif">Madera CLT Estructural 12cm</text>
+        
+  </g>
+
+  <!-- Card Information Overlay -->
+  <g transform="translate(40, 660)">
+    <rect x="-10" y="-30" width="460" height="75" rx="3" fill="#181715" fill-opacity="0.75" stroke="#32302b" stroke-width="1"/>
+    <text x="10" y="-8" fill="#2e5944" font-size="11" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="2" text-transform="uppercase">INSTALACIONES</text>
+    <text x="10" y="16" fill="#ffffff" font-size="18" font-family="'Cormorant Garamond', serif" font-weight="700">Ensayo Hermeticidad Blower Door</text>
+    <text x="10" y="34" fill="#a8a29e" font-size="11" font-family="'Inter', sans-serif">Resultado final: n50 = 0.38 h⁻¹ (límite 0.6 h⁻¹)</text>
+  </g>
+
+  <!-- Studio Watermark -->
+  <text x="960" y="45" fill="#ffffff" fill-opacity="0.4" font-size="12" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="3" text-anchor="end">ÁN F I O N</text>
+</svg>

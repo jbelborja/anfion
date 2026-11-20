@@ -1,0 +1,38 @@
+baseURL = '/'
+languageCode = 'es-es'
+title = 'Ánfion | Arquitectura, Casas Pasivas y Rehabilitación'
+theme = 'anfion'
+
+[params]
+  brand_name = 'ÁNFION'
+  brand_subtitle = 'Arquitectura · Casas Pasivas · Rehab'
+  description = 'Estudio de arquitectura especializado en diseño bioclimático, estándar Passivhaus y rehabilitación integral de alta eficiencia energética.'
+  
+  hero_title = 'Arquitectura de consumo casi nulo y rehabilitación con alma.'
+  hero_subtitle = 'Diseñamos espacios sostenibles bajo el estándar Passivhaus que combinan excelencia estética, confort térmico 365 días al año y mínima huella ambiental.'
+
+  [params.contact]
+    address = 'Calle de la Arquitectura, 12, 28004 Madrid'
+    phone = '+34 912 345 678'
+    email = 'contacto@anfion-arquitectura.es'
+    hours = 'Lunes a Viernes: 09:00 - 18:30'
+
+[[menus.main]]
+  name = 'Inicio'
+  pageRef = '/'
+  weight = 10
+
+[[menus.main]]
+  name = 'Proyectos'
+  pageRef = '/projects'
+  weight = 20
+
+[[menus.main]]
+  name = 'Equipo'
+  pageRef = '/members'
+  weight = 30
+
+[[menus.main]]
+  name = 'Contacto'
+  pageRef = '/contact'
+  weight = 40

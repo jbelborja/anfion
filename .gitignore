@@ -1,0 +1,32 @@
+# Generated files by Hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Executable binaries
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Temporary build locks and caches
+.hugo_build.lock
+
+# Environment variables
+.env
+.env.*
+
+# Node dependencies (if using PostCSS/Tailwind/Node tools)
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.idea/
+*.iml
+.vscode/
+
+# Agent skills
+skills/
