@@ -320,20 +320,22 @@
       {{ $members := where site.RegularPages "Section" "members" }}
       {{ range $members }}
         <div class="bg-white border border-stone-200/90 rounded-sm p-6 text-center hover:shadow-lg transition-all group">
-          <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 bg-stone-200 border-2 border-stone-100 shadow-inner">
+          <a href="{{ .Permalink }}" class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-6 bg-stone-900 border-2 border-stone-200 shadow-inner block">
             {{ with .Params.photo }}
               <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
             {{ else }}
-              <div class="w-full h-full flex items-center justify-center font-serif text-3xl text-stone-500">
+              <div class="w-full h-full flex items-center justify-center font-heading text-3xl text-stone-500">
                 {{ substr $.Title 0 1 }}
               </div>
             {{ end }}
-          </div>
-          <h3 class="text-lg font-serif font-bold text-stone-900 mb-1">{{ .Title }}</h3>
+          </a>
+          <h3 class="text-lg font-heading font-bold text-stone-900 mb-1">
+            <a href="{{ .Permalink }}" class="hover:text-brand-700 transition-colors">{{ .Title }}</a>
+          </h3>
           <p class="text-xs uppercase tracking-wider font-semibold text-brand-700 mb-3">{{ .Params.role }}</p>
           <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed mb-4">{{ .Description | default .Summary }}</p>
           <div class="pt-3 border-t border-stone-100">
-            <a href="{{ "/members" | relURL }}" class="text-xs font-semibold uppercase tracking-wider text-stone-700 hover:text-brand-700">
+            <a href="{{ .Permalink }}" class="text-xs font-semibold uppercase tracking-wider text-stone-700 hover:text-brand-700">
               Ver Perfil Completo →
             </a>
           </div>

@@ -63,6 +63,18 @@ gallery:
 
 ---
 
+## 👥 Creación de Nuevos Miembros del Equipo
+
+Los miembros del equipo son páginas de contenido completas con su propia URL (`/members/nombre-del-miembro/`), biografía, acreditaciones y especialidades. Para añadir un nuevo miembro:
+
+```bash
+hugo new content members/nombre-del-miembro.md
+```
+
+El archivo generado en `content/members/nombre-del-miembro.md` incluirá la plantilla con cargo, rol, credenciales, cita y especialidades.
+
+---
+
 ## 🛠️ Comandos de Desarrollo Local
 
 ### 1. Iniciar el servidor local de desarrollo

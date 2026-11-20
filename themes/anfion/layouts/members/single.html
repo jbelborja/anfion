@@ -1,0 +1,202 @@
+{{ define "main" }}
+
+<article class="bg-[#FAF8F5] pb-24">
+  
+  <!-- Header / Breadcrumbs -->
+  <section class="bg-stone-900 text-white pt-12 pb-16 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center text-xs text-stone-400 space-x-2 mb-6 font-sans">
+        <a href="{{ "/" | relURL }}" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <a href="{{ "/members" | relURL }}" class="hover:text-white transition-colors">Equipo</a>
+        <span>/</span>
+        <span class="text-brand-300 font-semibold">{{ .Title }}</span>
+      </nav>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-bold text-brand-400 block mb-2">
+            {{ .Params.role }}
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight mb-3">
+            {{ .Title }}
+          </h1>
+          <p class="text-stone-300 text-base font-light max-w-2xl">
+            {{ .Params.years_experience | default "Arquitecto / Consultor Técnico" }} · Ánfion Arquitectura
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          {{ with .Params.email }}
+            <a href="mailto:{{ . }}" class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-stone-900 bg-white hover:bg-brand-200 transition-all rounded-sm shadow-sm">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Escribir Email
+            </a>
+          {{ end }}
+          {{ with .Params.linkedin }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white border border-stone-700 hover:border-white transition-all rounded-sm">
+              LinkedIn →
+            </a>
+          {{ end }}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Profile Content Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Left Column: Portrait & Credentials (4 cols) -->
+      <div class="lg:col-span-4 space-y-8">
+        
+        <!-- Portrait Box -->
+        <div class="bg-stone-900 p-6 rounded-sm border border-stone-800 shadow-md">
+          <div class="relative w-full aspect-3/4 overflow-hidden rounded-sm bg-stone-950 border border-stone-800/80">
+            {{ with .Params.photo }}
+              <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-contain">
+            {{ else }}
+              <div class="w-full h-full flex items-center justify-center font-heading text-6xl text-stone-600 bg-stone-900">
+                {{ substr $.Title 0 1 }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Accreditations & Official Registrations -->
+        {{ with .Params.credentials }}
+          <div class="bg-white p-6 rounded-sm border border-stone-200 shadow-xs">
+            <h3 class="text-xs uppercase tracking-widest font-bold text-brand-700 mb-4">
+              Acreditaciones & Certificaciones
+            </h3>
+            <ul class="space-y-2.5 text-xs text-stone-700">
+              {{ range . }}
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <span class="font-medium">{{ . }}</span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+
+        <!-- Direct Contact Card -->
+        <div class="bg-stone-100 p-6 rounded-sm border border-stone-200 text-xs space-y-3">
+          <h3 class="text-xs uppercase tracking-widest font-bold text-stone-800 mb-2">
+            Contacto Profesional
+          </h3>
+          {{ with .Params.email }}
+            <div class="flex items-center gap-2 text-stone-600">
+              <svg class="w-4 h-4 text-brand-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <a href="mailto:{{ . }}" class="hover:text-brand-700 font-mono">{{ . }}</a>
+            </div>
+          {{ end }}
+          <div class="flex items-center gap-2 text-stone-600">
+            <svg class="w-4 h-4 text-brand-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <span>Estudio Central (Madrid / Barcelona)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Biography, Quote & Specialties (8 cols) -->
+      <div class="lg:col-span-8 space-y-10">
+        
+        <!-- Member Quote -->
+        {{ with .Params.quote }}
+          <blockquote class="p-6 sm:p-8 bg-brand-50/60 border-l-4 border-brand-500 rounded-r-sm">
+            <p class="font-serif italic text-lg sm:text-xl text-stone-800 leading-relaxed">
+              “{{ . }}”
+            </p>
+            <footer class="mt-3 text-xs uppercase tracking-wider font-bold text-brand-700">
+              — {{ $.Title }}
+            </footer>
+          </blockquote>
+        {{ end }}
+
+        <!-- Narrative Biography Content -->
+        <div class="bg-white p-8 sm:p-10 rounded-sm border border-stone-200 shadow-xs">
+          <h2 class="text-xs uppercase tracking-widest font-bold text-stone-400 mb-6">
+            Trayectoria y Perfil Técnico
+          </h2>
+          <div class="prose prose-stone prose-lg max-w-none prose-headings:font-heading prose-headings:text-stone-900 prose-p:text-stone-600 prose-p:leading-relaxed">
+            {{ .Content }}
+          </div>
+
+          <!-- Specialties Grid -->
+          {{ with .Params.specialties }}
+            <div class="mt-10 pt-8 border-t border-stone-100">
+              <h3 class="text-xs uppercase tracking-widest font-bold text-stone-800 mb-4">
+                Especialidades & Disciplinas Técnicas
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {{ range . }}
+                  <div class="flex items-center gap-2.5 p-3 bg-stone-50 rounded-sm border border-stone-200/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-600"></span>
+                    <span class="text-xs font-semibold text-stone-800">{{ . }}</span>
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+
+        <!-- Role in Anfion Projects Callout -->
+        <div class="bg-stone-900 text-white p-8 rounded-sm border border-stone-800">
+          <h3 class="text-lg font-heading font-bold mb-2">
+            ¿Quieres consultar la viabilidad de tu proyecto con {{ .Title }}?
+          </h3>
+          <p class="text-xs text-stone-300 leading-relaxed mb-6 font-light max-w-2xl">
+            Desde el estudio de soleamiento y simulación energética inicial hasta el cálculo de estructuras y dirección de obra, nuestro equipo te acompaña paso a paso.
+          </p>
+          <a href="{{ "/contact" | relURL }}" class="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest text-stone-900 bg-white hover:bg-brand-200 transition-all rounded-sm shadow-md">
+            Solicitar Cita de Asesoría
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Other Members Navigation -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pt-12 border-t border-stone-200">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-1">Equipo Multidisciplinar</span>
+        <h3 class="text-2xl font-heading font-bold text-stone-900">Otros Arquitectos de Ánfion</h3>
+      </div>
+      <a href="{{ "/members" | relURL }}" class="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-brand-700">
+        Ver Todo el Equipo →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {{ $currentTitle := .Title }}
+      {{ range where (where site.RegularPages "Section" "members") "Title" "!=" $currentTitle }}
+        <a href="{{ .Permalink }}" class="p-6 bg-white rounded-sm border border-stone-200 shadow-xs hover:shadow-md hover:border-brand-400 transition-all flex items-center gap-5 group">
+          <div class="w-16 h-16 rounded-full overflow-hidden bg-stone-900 shrink-0 border border-stone-200">
+            {{ with .Params.photo }}
+              <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+            {{ else }}
+              <div class="w-full h-full flex items-center justify-center font-heading text-2xl text-stone-400">
+                {{ substr $.Title 0 1 }}
+              </div>
+            {{ end }}
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-bold text-brand-700 block mb-0.5">{{ .Params.role }}</span>
+            <h4 class="text-lg font-heading font-bold text-stone-900 group-hover:text-brand-700 transition-colors">{{ .Title }}</h4>
+            <span class="text-xs text-stone-500 font-sans mt-1 inline-flex items-center gap-1">Ver perfil y especialidades →</span>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+</article>
+
+{{ end }}
