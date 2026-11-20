@@ -1,40 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2a2622"/>
-      <stop offset="100%" stop-color="#161412"/>
+    <linearGradient id="p-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24211e"/>
+      <stop offset="100%" stop-color="#151312"/>
     </linearGradient>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.04"/>
+    <radialGradient id="halo" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#a78864" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#151312" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="arch-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.035"/>
     </pattern>
   </defs>
 
-  <!-- Background -->
-  <rect width="800" height="800" fill="url(#bg)"/>
-  <rect width="800" height="800" fill="url(#grid)"/>
+  <!-- Background Base -->
+  <rect width="600" height="800" fill="url(#p-bg)"/>
+  <rect width="600" height="800" fill="url(#arch-grid)"/>
+  <circle cx="300" cy="340" r="240" fill="url(#halo)"/>
 
-  <!-- Architectural Content Wireframe -->
-  <g id="wireframe">
+  <!-- Architectural Framing Circle -->
+  <circle cx="300" cy="350" r="185" fill="none" stroke="#a78864" stroke-width="1" stroke-dasharray="4,6" stroke-opacity="0.4"/>
+  <circle cx="300" cy="350" r="195" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.15"/>
+
+  <!-- Portrait Silhouette Graphic -->
+  <g id="portrait-figure">
     
-        <!-- Architect Portrait Line Art -->
-        <circle cx="400" cy="340" r="100" fill="#a78864" fill-opacity="0.15" stroke="#a78864" stroke-width="2"/>
-        <!-- Geometric shoulders -->
-        <path d="M 220 620 C 220 480 300 460 400 460 C 500 460 580 480 580 620 Z" fill="#a78864" fill-opacity="0.12" stroke="#a78864" stroke-width="2"/>
-        <!-- Architect glasses / precision mark -->
-        <circle cx="370" cy="335" r="24" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <circle cx="430" cy="335" r="24" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <line x1="394" y1="335" x2="406" y2="335" stroke="#ffffff" stroke-width="2"/>
+        <!-- Hair / head silhouette -->
+        <path d="M 230 310 C 230 180 370 180 370 310 C 370 370 360 410 300 410 C 240 410 230 370 230 310 Z" fill="#a78864" fill-opacity="0.18"/>
+        <!-- Face contour -->
+        <path d="M 255 290 Q 300 400 345 290 Q 345 230 300 230 Q 255 230 255 290 Z" fill="#d9c8ad" fill-opacity="0.25" stroke="#a78864" stroke-width="1.5"/>
+        <!-- Architectural spectacles -->
+        <circle cx="282" cy="285" r="18" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <circle cx="318" cy="285" r="18" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <line x1="300" y1="285" x2="300" y2="285" stroke="#ffffff" stroke-width="2"/>
+        <path d="M 285 340 Q 300 350 315 340" fill="none" stroke="#a78864" stroke-width="1.5"/>
+        <!-- Neck & minimalist architectural blazer -->
+        <path d="M 285 385 L 285 440 L 315 440 L 315 385 Z" fill="#d9c8ad" fill-opacity="0.2"/>
+        <path d="M 170 590 L 250 440 L 300 490 L 350 440 L 430 590 Z" fill="#a78864" fill-opacity="0.15" stroke="#a78864" stroke-width="1.5"/>
+        <!-- Shoulders silhouette -->
+        <path d="M 120 720 C 120 540 180 470 300 470 C 420 470 480 540 480 720 Z" fill="none" stroke="#a78864" stroke-width="2" stroke-opacity="0.7"/>
         
   </g>
 
-  <!-- Card Information Overlay -->
-  <g transform="translate(40, 710)">
-    <rect x="-10" y="-30" width="460" height="75" rx="3" fill="#181715" fill-opacity="0.75" stroke="#32302b" stroke-width="1"/>
-    <text x="10" y="-8" fill="#a78864" font-size="11" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="2" text-transform="uppercase">COAM Nº 19.420</text>
-    <text x="10" y="16" fill="#ffffff" font-size="18" font-family="'Cormorant Garamond', serif" font-weight="700">Elena Martín Gómez</text>
-    <text x="10" y="34" fill="#a8a29e" font-size="11" font-family="'Inter', sans-serif">Arquitecta Directora · Passivhaus Designer</text>
-  </g>
-
-  <!-- Studio Watermark -->
-  <text x="760" y="45" fill="#ffffff" fill-opacity="0.4" font-size="12" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="3" text-anchor="end">ÁN F I O N</text>
+  <!-- Subtle Bottom Foundation Bar -->
+  <line x1="80" y1="720" x2="520" y2="720" stroke="#a78864" stroke-width="1.5" stroke-opacity="0.5"/>
 </svg>

@@ -1,40 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#272224"/>
-      <stop offset="100%" stop-color="#161314"/>
+    <linearGradient id="p-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#262022"/>
+      <stop offset="100%" stop-color="#161214"/>
     </linearGradient>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.04"/>
+    <radialGradient id="halo" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#b85d38" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#161214" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="arch-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.035"/>
     </pattern>
   </defs>
 
-  <!-- Background -->
-  <rect width="800" height="800" fill="url(#bg)"/>
-  <rect width="800" height="800" fill="url(#grid)"/>
+  <!-- Background Base -->
+  <rect width="600" height="800" fill="url(#p-bg)"/>
+  <rect width="600" height="800" fill="url(#arch-grid)"/>
+  <circle cx="300" cy="340" r="240" fill="url(#halo)"/>
 
-  <!-- Architectural Content Wireframe -->
-  <g id="wireframe">
+  <!-- Architectural Framing Circle -->
+  <circle cx="300" cy="350" r="185" fill="none" stroke="#b85d38" stroke-width="1" stroke-dasharray="4,6" stroke-opacity="0.4"/>
+  <circle cx="300" cy="350" r="195" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.15"/>
+
+  <!-- Portrait Silhouette Graphic -->
+  <g id="portrait-figure">
     
-        <!-- Architect Portrait Line Art -->
-        <circle cx="400" cy="340" r="100" fill="#b85d38" fill-opacity="0.15" stroke="#b85d38" stroke-width="2"/>
-        <!-- Geometric shoulders -->
-        <path d="M 220 620 C 220 480 300 460 400 460 C 500 460 580 480 580 620 Z" fill="#b85d38" fill-opacity="0.12" stroke="#b85d38" stroke-width="2"/>
-        <!-- Architect glasses / precision mark -->
-        <circle cx="370" cy="335" r="24" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <circle cx="430" cy="335" r="24" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <line x1="394" y1="335" x2="406" y2="335" stroke="#ffffff" stroke-width="2"/>
+        <!-- Hair flowing contour -->
+        <path d="M 215 280 C 215 170 385 170 385 280 C 385 420 370 470 360 520 C 330 430 365 310 340 280 Q 300 240 260 280 C 235 310 270 430 240 520 C 230 470 215 420 215 280 Z" fill="#b85d38" fill-opacity="0.22"/>
+        <!-- Face oval -->
+        <path d="M 255 280 Q 300 395 345 280 Q 345 230 300 230 Q 255 230 255 280 Z" fill="#d9c8ad" fill-opacity="0.25" stroke="#b85d38" stroke-width="1.5"/>
+        <!-- Subtle features -->
+        <circle cx="280" cy="285" r="3" fill="#ffffff"/>
+        <circle cx="320" cy="285" r="3" fill="#ffffff"/>
+        <path d="M 288 335 Q 300 345 312 335" fill="none" stroke="#b85d38" stroke-width="1.5"/>
+        <!-- Natural linen shirt neckline -->
+        <path d="M 288 380 L 288 440 L 312 440 L 312 380 Z" fill="#d9c8ad" fill-opacity="0.2"/>
+        <path d="M 170 560 C 230 460 270 440 300 440 C 330 440 370 460 430 560 Z" fill="#b85d38" fill-opacity="0.15" stroke="#b85d38" stroke-width="1.5"/>
+        <path d="M 125 720 C 125 530 185 450 300 450 C 415 450 475 530 475 720 Z" fill="none" stroke="#b85d38" stroke-width="2" stroke-opacity="0.7"/>
         
   </g>
 
-  <!-- Card Information Overlay -->
-  <g transform="translate(40, 710)">
-    <rect x="-10" y="-30" width="460" height="75" rx="3" fill="#181715" fill-opacity="0.75" stroke="#32302b" stroke-width="1"/>
-    <text x="10" y="-8" fill="#b85d38" font-size="11" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="2" text-transform="uppercase">WELL AP CERTIFIED</text>
-    <text x="10" y="16" fill="#ffffff" font-size="18" font-family="'Cormorant Garamond', serif" font-weight="700">Clara Morales Vega</text>
-    <text x="10" y="34" fill="#a8a29e" font-size="11" font-family="'Inter', sans-serif">Arquitecta Interiores · Salud Ambiental</text>
-  </g>
-
-  <!-- Studio Watermark -->
-  <text x="760" y="45" fill="#ffffff" fill-opacity="0.4" font-size="12" font-family="'Inter', sans-serif" font-weight="700" letter-spacing="3" text-anchor="end">ÁN F I O N</text>
+  <!-- Subtle Bottom Foundation Bar -->
+  <line x1="80" y1="720" x2="520" y2="720" stroke="#b85d38" stroke-width="1.5" stroke-opacity="0.5"/>
 </svg>
