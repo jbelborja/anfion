@@ -124,7 +124,7 @@
 
   <!-- Photo Gallery for Each Content -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {{ partial "gallery.html" (dict "items" .Params.gallery "title" (printf "Galería Fotográfica · %s" .Title)) }}
+    {{ partial "gallery.html" (dict "items" .Params.gallery "page" . "title" (printf "Galería Fotográfica · %s" .Title)) }}
   </section>
 
   <!-- Next / Prev Project Navigation -->

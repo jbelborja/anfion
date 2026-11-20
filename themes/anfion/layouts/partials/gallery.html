@@ -1,5 +1,18 @@
+{{ $page := .page }}
 {{ $gallery := .items }}
 {{ $sectionTitle := .title | default "Galería Fotográfica y Detalles Constructivos" }}
+
+{{/* Fallback to page bundle image resources if frontmatter gallery is not specified */}}
+{{ if and (not $gallery) $page }}
+  {{ $resources := $page.Resources.ByType "image" }}
+  {{ if gt (len $resources) 0 }}
+    {{ $autoGallery := slice }}
+    {{ range $resources }}
+      {{ $autoGallery = $autoGallery | append (dict "src" .RelPermalink "title" (replaceRE "\\.[^.]+$" "" .Name) "category" "Fotografía" "caption" "") }}
+    {{ end }}
+    {{ $gallery = $autoGallery }}
+  {{ end }}
+{{ end }}
 
 {{ if $gallery }}
 <section class="mt-16 pt-12 border-t border-stone-200">
