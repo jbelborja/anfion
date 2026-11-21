@@ -26,7 +26,7 @@ En el archivo generado (`content/projects/nuevo-proyecto.md`), puedes configurar
 title: "Casa Pasiva Roble"
 description: "Vivienda unifamiliar Passivhaus Classic en madera CLT."
 date: 2024-05-15
-featured_image: "/images/projects/casa-roble/featured.svg"
+featured_image: "images/projects/casa-roble/featured.svg"
 location: "Sierra de Guadarrama, Madrid"
 year: "2024"
 surface: 245
@@ -44,17 +44,17 @@ energy_rating: "A+ Casi Nulo"
 
 # Galería fotográfica con pies de foto y visor Lightbox
 gallery:
-  - src: "/images/projects/casa-roble/exterior-1.svg"
+  - src: "images/projects/casa-roble/exterior-1.svg"
     title: "Fachada Sur y Control Solar"
     category: "Exterior"
     caption: "Lamas móviles de alerce para garantizar captación en invierno y protección solar en verano."
 
-  - src: "/images/projects/casa-roble/interior-clt.svg"
+  - src: "images/projects/casa-roble/interior-clt.svg"
     title: "Salón Principal con Madera CLT Vista"
     category: "Interior"
     caption: "Espacio a doble altura con paneles de madera contralaminada y solera de inercia térmica."
 
-  - src: "/images/projects/casa-roble/blower-door.svg"
+  - src: "images/projects/casa-roble/blower-door.svg"
     title: "Ensayo de Hermeticidad Blower Door"
     category: "Instalaciones"
     caption: "Resultado final n50 = 0.38 h⁻¹, superando ampliamente el estándar oficial."

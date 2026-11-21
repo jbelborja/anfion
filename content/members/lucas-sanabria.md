@@ -1,7 +1,7 @@
 ---
 title: "Lucas Sanabria Varga"
 role: "Arquitecto Técnico & Especialista en Rehabilitación EnerPHit"
-photo: "/images/members/lucas-sanabria.svg"
+photo: "images/members/lucas-sanabria.svg"
 credentials:
   - "Passivhaus Tradesperson"
   - "Técnico Blower Door Certificado Level 2"

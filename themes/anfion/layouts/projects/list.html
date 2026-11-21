@@ -14,25 +14,39 @@
   </div>
 </section>
 
-<!-- Filter Buttons Bar -->
+<!-- Filter Buttons Bar (Dynamically generated from article tags) -->
+{{- $projectTags := slice -}}
+{{- range .Pages -}}
+  {{- with .Params.tags -}}
+    {{- range . -}}
+      {{- $projectTags = $projectTags | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $uniqueTags := $projectTags | uniq | sort -}}
+
 <section class="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 py-4 shadow-xs">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-x-auto gap-4">
-    <div class="flex items-center space-x-2">
-      <button data-filter-btn="all" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-brand-600 text-white border border-brand-600 shadow-xs cursor-pointer">
+    <div class="flex items-center space-x-2 shrink-0">
+      <button data-filter-btn="all" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-brand-600 text-white border border-brand-600 shadow-xs cursor-pointer whitespace-nowrap">
         Todos ({{ len .Pages }})
       </button>
-      <button data-filter-btn="passivhaus" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
-        Casas Pasivas
-      </button>
-      <button data-filter-btn="rehabilitacion" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
-        Rehabilitación EnerPHit
-      </button>
-      <button data-filter-btn="bioclimatica" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer">
-        Bioclimática & Madera
-      </button>
+      {{- range $uniqueTags -}}
+        {{- $tagName := . -}}
+        {{- $tagSlug := $tagName | urlize -}}
+        {{- $count := 0 -}}
+        {{- range $.Pages -}}
+          {{- if in .Params.tags $tagName -}}
+            {{- $count = add $count 1 -}}
+          {{- end -}}
+        {{- end }}
+        <button data-filter-btn="{{ $tagSlug }}" class="px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm transition-all bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200 cursor-pointer whitespace-nowrap">
+          {{ $tagName }} ({{ $count }})
+        </button>
+      {{- end }}
     </div>
-    <span class="text-xs text-stone-500 hidden sm:inline font-mono">
-      Haz clic en un proyecto para ver sus fotos
+    <span class="text-xs text-stone-500 hidden sm:inline font-mono shrink-0">
+      Filtra por etiqueta o haz clic en un proyecto
     </span>
   </div>
 </section>
@@ -43,8 +57,19 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {{ range .Pages }}
         {{ $proj := . }}
-        {{ $filterCategory := .Params.filter_tag | default "passivhaus" }}
-        <article data-filter-category="{{ $filterCategory }}" class="bg-white rounded-sm overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+        {{ $cardFilterList := slice }}
+        {{ with .Params.tags }}
+          {{ range . }}
+            {{ $cardFilterList = $cardFilterList | append (. | urlize) }}
+          {{ end }}
+        {{ end }}
+        {{ with .Params.filter_tag }}
+          {{ range (split . " ") }}
+            {{ $cardFilterList = $cardFilterList | append (. | urlize) }}
+          {{ end }}
+        {{ end }}
+        {{ $cardFilterStr := delimit ($cardFilterList | uniq) " " }}
+        <article data-filter-category="{{ $cardFilterStr }}" class="bg-white rounded-sm overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
           <div>
             <!-- Cover / Featured Image -->
             <a href="{{ .Permalink }}" class="block relative aspect-4/3 overflow-hidden bg-stone-200">
@@ -91,6 +116,17 @@
               <p class="text-stone-600 text-sm line-clamp-3 leading-relaxed mb-4">
                 {{ .Description | default .Summary }}
               </p>
+
+              <!-- Tags list on card -->
+              {{ with .GetTerms "tags" }}
+                <div class="flex flex-wrap gap-1.5 pt-3 border-t border-stone-100">
+                  {{ range . }}
+                    <a href="{{ .RelPermalink }}" class="inline-flex items-center text-[11px] font-medium text-stone-600 hover:text-brand-700 bg-stone-100/90 hover:bg-brand-50 px-2 py-0.5 rounded-sm transition-colors">
+                      #{{ .LinkTitle }}
+                    </a>
+                  {{ end }}
+                </div>
+              {{ end }}
             </div>
           </div>
 

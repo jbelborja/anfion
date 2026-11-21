@@ -1,7 +1,7 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 role: "Arquitecto / Especialista Passivhaus"
-photo: "/images/members/{{ .File.ContentBaseName }}.jpg"
+photo: "images/members/{{ .File.ContentBaseName }}.jpg"
 credentials:
   - "Passivhaus Designer Certificada / Tradesperson"
   - "COAM nº 00.000"

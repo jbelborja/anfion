@@ -192,7 +192,11 @@
 
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter-btn');
+        const rawFilter = btn.getAttribute('data-filter-btn') || '';
+        const filter = rawFilter.toLowerCase().trim();
+        let decodedFilter = filter;
+        try { decodedFilter = decodeURIComponent(filter); } catch (e) {}
+
         filterButtons.forEach(b => {
           b.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
           b.classList.add('bg-stone-100', 'text-stone-700', 'border-stone-200');
@@ -201,8 +205,17 @@
         btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
 
         projectCards.forEach(card => {
-          const category = card.getAttribute('data-filter-category');
-          if (filter === 'all' || category.includes(filter)) {
+          const rawCategories = card.getAttribute('data-filter-category') || '';
+          const categories = rawCategories.toLowerCase().split(/\s+/);
+          let decodedCategories = rawCategories.toLowerCase();
+          try { decodedCategories = decodeURIComponent(rawCategories.toLowerCase()); } catch (e) {}
+
+          const match = filter === 'all' ||
+            categories.includes(filter) ||
+            rawCategories.includes(filter) ||
+            decodedCategories.includes(decodedFilter);
+
+          if (match) {
             card.classList.remove('hidden');
           } else {
             card.classList.add('hidden');

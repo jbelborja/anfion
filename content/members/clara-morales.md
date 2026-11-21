@@ -1,7 +1,7 @@
 ---
 title: "Clara Morales Vega"
 role: "Arquitecta de Interiores & Salud Ambiental"
-photo: "/images/members/clara-morales.svg"
+photo: "images/members/clara-morales.svg"
 credentials:
   - "Certificación WELL AP"
   - "COAC nº 48.115"

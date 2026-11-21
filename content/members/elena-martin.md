@@ -1,7 +1,7 @@
 ---
 title: "Elena Martín Gómez"
 role: "Arquitecta Directora & Certified Passivhaus Designer"
-photo: "/images/members/elena-martin.svg"
+photo: "images/members/elena-martin.svg"
 credentials:
   - "Passivhaus Designer Certificada"
   - "COAM nº 19.420"

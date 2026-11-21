@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+<section class="bg-stone-900 text-white py-16 border-b border-stone-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <span class="text-xs uppercase tracking-widest font-semibold text-brand-400 block mb-2">Taxonomía</span>
+    <h1 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4">
+      {{ .Title | default "Etiquetas de Proyectos" }}
+    </h1>
+    <p class="text-stone-300 text-base max-w-3xl leading-relaxed">
+      Explora nuestras obras organizadas por estándar Passivhaus, sistemas constructivos y estrategias bioclimáticas.
+    </p>
+  </div>
+</section>
+
+<section class="py-16 bg-[#FAF8F5]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap gap-3">
+      {{ range .Data.Terms.Alphabetical }}
+        <a href="{{ .Page.RelPermalink }}" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-sm bg-white border border-stone-200 shadow-xs hover:border-brand-500 hover:text-brand-700 transition-all group">
+          <span class="font-serif font-bold text-stone-900 group-hover:text-brand-700 text-base">#{{ .Page.LinkTitle }}</span>
+          <span class="px-2 py-0.5 text-xs font-mono font-semibold rounded bg-stone-100 text-stone-600 group-hover:bg-brand-50 group-hover:text-brand-700">
+            {{ .Count }}
+          </span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}
