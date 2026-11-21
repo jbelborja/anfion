@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'https://jbelborja.github.io/anfion/'
 languageCode = 'es-es'
 title = 'Ánfion | Arquitectura, Casas Pasivas y Rehabilitación'
 theme = 'anfion'

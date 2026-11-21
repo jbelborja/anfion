@@ -16,3 +16,13 @@
 
 <!-- Tailwind compiled stylesheet -->
 <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+{{ with .Params.featured_image }}
+<meta property="og:image" content="{{ . | strings.TrimPrefix "/" | absURL }}">
+{{ else }}
+  {{ with .Params.photo }}
+<meta property="og:image" content="{{ . | strings.TrimPrefix "/" | absURL }}">
+  {{ end }}
+{{ end }}

@@ -28,9 +28,10 @@
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-gallery="true">
     {{ range $index, $item := $gallery }}
+      {{ $itemSrc := partial "image-url.html" $item.src }}
       <div 
         data-gallery-item="true"
-        data-src="{{ $item.src | relURL }}"
+        data-src="{{ $itemSrc }}"
         data-title="{{ $item.title }}"
         data-caption="{{ $item.caption }}"
         data-category="{{ $item.category }}"
@@ -38,7 +39,7 @@
       >
         <div class="aspect-4/3 w-full overflow-hidden bg-stone-200">
           <img 
-            src="{{ $item.src | relURL }}" 
+            src="{{ $itemSrc }}" 
             alt="{{ $item.title }}" 
             loading="lazy"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

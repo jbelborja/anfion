@@ -42,16 +42,17 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {{ range .Pages }}
+        {{ $proj := . }}
         {{ $filterCategory := .Params.filter_tag | default "passivhaus" }}
         <article data-filter-category="{{ $filterCategory }}" class="bg-white rounded-sm overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
           <div>
             <!-- Cover / Featured Image -->
             <a href="{{ .Permalink }}" class="block relative aspect-4/3 overflow-hidden bg-stone-200">
               {{ with .Params.featured_image }}
-                <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <img src="{{ partial "image-url.html" . }}" alt="{{ $proj.Title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
               {{ else }}
                 <div class="w-full h-full bg-stone-300 flex items-center justify-center font-serif text-2xl text-stone-600">
-                  {{ $.Title }}
+                  {{ $proj.Title }}
                 </div>
               {{ end }}
               

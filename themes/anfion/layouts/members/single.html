@@ -8,9 +8,9 @@
       
       <!-- Breadcrumb -->
       <nav class="flex items-center text-xs text-stone-400 space-x-2 mb-6 font-sans">
-        <a href="{{ "/" | relURL }}" class="hover:text-white transition-colors">Inicio</a>
+        <a href="{{ site.Home.RelPermalink }}" class="hover:text-white transition-colors">Inicio</a>
         <span>/</span>
-        <a href="{{ "/members" | relURL }}" class="hover:text-white transition-colors">Equipo</a>
+        <a href="{{ "members" | relURL }}" class="hover:text-white transition-colors">Equipo</a>
         <span>/</span>
         <span class="text-brand-300 font-semibold">{{ .Title }}</span>
       </nav>
@@ -57,7 +57,7 @@
         <div class="bg-stone-900 p-6 rounded-sm border border-stone-800 shadow-md">
           <div class="relative w-full aspect-3/4 overflow-hidden rounded-sm bg-stone-950 border border-stone-800/80">
             {{ with .Params.photo }}
-              <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-contain">
+              <img src="{{ partial "image-url.html" . }}" alt="{{ $.Title }}" class="w-full h-full object-contain">
             {{ else }}
               <div class="w-full h-full flex items-center justify-center font-heading text-6xl text-stone-600 bg-stone-900">
                 {{ substr $.Title 0 1 }}
@@ -152,7 +152,7 @@
           <p class="text-xs text-stone-300 leading-relaxed mb-6 font-light max-w-2xl">
             Desde el estudio de soleamiento y simulación energética inicial hasta el cálculo de estructuras y dirección de obra, nuestro equipo te acompaña paso a paso.
           </p>
-          <a href="{{ "/contact" | relURL }}" class="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest text-stone-900 bg-white hover:bg-brand-200 transition-all rounded-sm shadow-md">
+          <a href="{{ "contact" | relURL }}" class="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest text-stone-900 bg-white hover:bg-brand-200 transition-all rounded-sm shadow-md">
             Solicitar Cita de Asesoría
           </a>
         </div>
@@ -169,7 +169,7 @@
         <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-1">Equipo Multidisciplinar</span>
         <h3 class="text-2xl font-heading font-bold text-stone-900">Otros Arquitectos de Ánfion</h3>
       </div>
-      <a href="{{ "/members" | relURL }}" class="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-brand-700">
+      <a href="{{ "members" | relURL }}" class="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-brand-700">
         Ver Todo el Equipo →
       </a>
     </div>
@@ -177,13 +177,14 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {{ $currentTitle := .Title }}
       {{ range where (where site.RegularPages "Section" "members") "Title" "!=" $currentTitle }}
+        {{ $otherMember := . }}
         <a href="{{ .Permalink }}" class="p-6 bg-white rounded-sm border border-stone-200 shadow-xs hover:shadow-md hover:border-brand-400 transition-all flex items-center gap-5 group">
           <div class="w-16 h-16 rounded-full overflow-hidden bg-stone-900 shrink-0 border border-stone-200">
             {{ with .Params.photo }}
-              <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+              <img src="{{ partial "image-url.html" . }}" alt="{{ $otherMember.Title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
             {{ else }}
               <div class="w-full h-full flex items-center justify-center font-heading text-2xl text-stone-400">
-                {{ substr $.Title 0 1 }}
+                {{ substr $otherMember.Title 0 1 }}
               </div>
             {{ end }}
           </div>
